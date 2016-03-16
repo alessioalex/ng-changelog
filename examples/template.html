@@ -1,0 +1,22 @@
+<a name="<%= data.tag.name %>"></a>
+# <%= data.tag.name %> (<%= data.tag.date %>)
+
+<% data.commitTypes.forEach(function(commitType) { %>
+### <%= data.typeMap[commitType] %>
+<%
+  data.tag.commits[commitType].forEach(function(commit) {
+   if (commit.discard || commit.isReverted || commit.hasReverted) { return; }
+%>
+<%=
+  helpers.formatCommitText(commit.scope, commit.subject)
+%> (<%= helpers.shortenHash(commit.hash) %>)<%=
+  helpers.formatReferencesText(commit.references)
+%><% }) %>
+<% }) %>
+<% if (data.breaking.length) {
+%>### BREAKING CHANGES
+
+<% data.breaking.forEach(function(note) {
+%>* <%= note.scope ? note.scope + ': ' : '' %><%= note.text %>
+<% }) %>
+<% } %>

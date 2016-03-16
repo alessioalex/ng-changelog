@@ -1,0 +1,22 @@
+{
+  "name": "ng-changelog",
+  "version": "0.0.1",
+  "description": "Changelog generator based on the Angular git commit message conventions.",
+  "main": "index.js",
+  "dependencies": {
+    "dateformat": "^1.0.12",
+    "git-commits": "^1.1.1",
+    "git-show-ref": "^1.0.0",
+    "pump-chain": "^1.0.0",
+    "semver": "^5.1.0",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "ejs": "^2.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandru Vladutu",
+  "license": "MIT"
+}
