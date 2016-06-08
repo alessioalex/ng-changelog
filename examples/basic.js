@@ -100,7 +100,7 @@ changelogStream(repoPath, {
     });
   });
 
-  const commitTypesToShow = Object.keys(typeMap).filter((t) => {
+  let commitTypesToShow = Object.keys(typeMap).filter((t) => {
     return d.commits[t] && d.commits[t].length;
   });
 
@@ -163,6 +163,19 @@ changelogStream(repoPath, {
   }
 
   if (!commitTypesToShow.length) { return; }
+
+  // soft in alphabetical order
+  commitTypesToShow = commitTypesToShow.sort((a, b) => {
+    if (typeMap[a].toLowerCase() > typeMap[b].toLowerCase()) {
+      return 1;
+    }
+
+    if (typeMap[a].toLowerCase() < typeMap[b].toLowerCase()) {
+      return -1;
+    }
+
+    return 0;
+  });
 
   const output = ejs.render(tmpl, {
     data: {
